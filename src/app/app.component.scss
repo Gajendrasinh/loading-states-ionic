@@ -1,0 +1,38 @@
+@import "~@pxblue/colors/palette.scss";
+
+mat-list {
+  color: map-get($pxb-gray, 800);
+}
+.mat-list-base .mat-list-item{
+  color: inherit;
+  height: 48px;
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+.list-label{
+  margin: 0;
+  margin-left: 15px;
+}
+.list-value {
+  flex: 1 1 0px;
+  text-align: right;
+}
+.mat-card {
+    width: 100%;
+    overflow: hidden;
+    height: 100%,
+}
+
+.padding0{
+  padding: 0;
+}
+
+mat-grid-tile{
+  overflow: visible;
+}
+
+ion-content{
+  --padding-bottom : 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+  --padding-top: 20px;
+}

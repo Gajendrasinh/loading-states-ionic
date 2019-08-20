@@ -1,0 +1,48 @@
+<ion-app>
+	<mat-toolbar color="primary" flexLayout="row" >
+   <button type="button" mat-icon-button >
+      <mat-icon>menu</mat-icon>
+   </button>
+   <h6>{{title}}</h6>
+    <div fxFlex></div>
+   <button mat-button color="white" (click)="refreshData()">
+      <mat-icon>autorenew</mat-icon>
+    </button>
+</mat-toolbar>
+
+  <ion-content>
+ <mat-grid-list #grid [cols]="cols"  gutterSize="12px" rowHeight="270px" >
+        <mat-grid-tile *ngFor="let device of deviceList">
+          <mat-card class="padding0">
+
+             <placeholder-card  *ngIf="device.data.heroValue === undefined" class="nopadding"></placeholder-card>
+
+              <mat-list class="padding0" *ngIf="device.data.heroValue !== undefined">
+                <pxb-hero-banner [divider]="true">
+                    <pxb-hero label="Grade" value="{{device.data.heroValue}}"  units="/100" size="36">
+                      <span [style.color]="gradeInterpretColor(device.data.heroValue)"   primary>{{interpretIcon(device.data.heroValue)}} </span>
+                    </pxb-hero>
+                    <pxb-hero label="Load">
+                      <pie-progress  [style.color]="interpretColor(100 - device.data.loadValue)" percent="{{device.data.loadValue}}" size="36" primary></pie-progress>
+                      <pxb-channel-value value="{{device.data.loadValue}}" units="%">
+                      </pxb-channel-value>
+                    </pxb-hero>
+                    <pxb-hero label="Battery" value="{{device.data.battery}}"  units="%">
+                      <battery-progress  [style.color]="interpretColor(device.data.battery)"  percent="{{device.data.battery}}" size="36" primary></battery-progress>
+                    </pxb-hero>
+                </pxb-hero-banner>
+                  <mat-list-item *ngFor="let list of device.data.channels">
+                    <mat-icon>{{list.icon}}</mat-icon>
+                    <h4 class="list-label">{{list.label}}</h4>
+                    <div class="list-value">
+                      <pxb-channel-value value="{{list.value}}" units="{{list.unit}}"></pxb-channel-value>
+                    </div>                    
+                 </mat-list-item>
+              </mat-list>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+  </ion-content>
+</ion-app>
+
+	
